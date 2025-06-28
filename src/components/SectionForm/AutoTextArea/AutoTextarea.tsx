@@ -1,6 +1,6 @@
 import { TextareaHTMLAttributes, useEffect, useRef } from 'react';
 
-interface AutoTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
+type AutoTextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement>
 
 export const AutoTextarea = ({ value, ...props }: AutoTextareaProps) => {
   const ref = useRef<HTMLTextAreaElement | null>(null);

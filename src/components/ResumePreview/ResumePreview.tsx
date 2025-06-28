@@ -148,9 +148,9 @@ export const ResumePreview = () => {
   };
 
   return (
-    <div className="w-full p-6 pr-6 xl:pr-20 2xl:pr-40 min-h-screen">
+    <section className="w-full p-6 pr-6 xl:pr-20 2xl:pr-40 min-h-screen">
 
-      <div className="flex gap-2 justify-between mb-2">
+      <div className="flex gap-2 justify-between mb-4">
         <h2 className="text-xl font-bold mb-4">Preview</h2>
 
         <button
@@ -188,6 +188,6 @@ export const ResumePreview = () => {
           )}
         </div>
       ) }
-    </div>
+    </section>
   );
 };
