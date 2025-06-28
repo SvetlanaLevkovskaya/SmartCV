@@ -1,5 +1,4 @@
 ## Resume Builder Application
-
 This project is a React-based resume builder web application. Users can dynamically add, edit, reorder, and remove resume sections, preview the formatted resume in real-time, and export it as a PDF. AI-powered example data is available via the "AI tips" button.
 
 ## Features
@@ -10,8 +9,7 @@ This project is a React-based resume builder web application. Users can dynamica
 - **PDF Export** Export the resume preview to PDF via html2pdf.js.
 - **Dark Mode** Responsive to user’s system color scheme using a custom useDarkMode hook.
 
-## Установка и запуск
-
+## Installation
 - Clone the repository - git clone
 - Install dependencies - npm install
 - Start Development Server - npm run dev.
