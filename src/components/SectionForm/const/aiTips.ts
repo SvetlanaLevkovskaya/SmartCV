@@ -1,6 +1,5 @@
 import { ResumeSection } from '../../../types';
 
-
 export const AI_TIPS: Record<ResumeSection['type'], Partial<ResumeSection>> = {
   personalInfo: {
     fullName: 'John Doe',
@@ -17,7 +16,8 @@ export const AI_TIPS: Record<ResumeSection['type'], Partial<ResumeSection>> = {
     company: 'TechCorp',
     startDate: '2020-01-01',
     endDate: '2023-05-31',
-    description: 'Worked on building scalable React applications, improving UI/UX, and collaborating with cross-functional teams.',
+    description:
+      'Worked on building scalable React applications, improving UI/UX, and collaborating with cross-functional teams.',
     isCurrentlyWork: false,
   },
   education: {
@@ -45,7 +45,7 @@ export const AI_TIPS: Record<ResumeSection['type'], Partial<ResumeSection>> = {
     ],
   },
   certificates: {
-    text: [
+    items: [
       'Certified React Developer',
       'JavaScript Algorithms and Data Structure',
       'Responsive Web Design',

@@ -19,4 +19,4 @@ export const useDarkMode = () => {
   }, []);
 
   return isDarkMode;
-}
+};

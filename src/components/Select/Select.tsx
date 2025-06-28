@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { SectionType } from '../../types';
 
 const SECTION_OPTIONS: { label: string; value: SectionType }[] = [
@@ -18,13 +19,13 @@ interface Props {
 export const Select = ({ value, onChange }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const selected = SECTION_OPTIONS.find(opt => opt.value === value);
+  const selected = SECTION_OPTIONS.find((opt) => opt.value === value);
 
   return (
     <div className="relative inline-block w-48 text-left">
       <button
         type="button"
-        onClick={() => setIsOpen(prev => !prev)}
+        onClick={() => setIsOpen((prev) => !prev)}
         className="w-full border px-3 py-2 rounded focus:outline-none flex justify-between items-center"
       >
         {selected?.label || 'Select section'}
@@ -40,7 +41,7 @@ export const Select = ({ value, onChange }: Props) => {
 
       {isOpen && (
         <ul className="absolute z-10 mt-1 w-full bg-stone-50 border rounded">
-          {SECTION_OPTIONS.map(option => (
+          {SECTION_OPTIONS.map((option) => (
             <li
               key={option.value}
               onClick={() => {
@@ -58,4 +59,4 @@ export const Select = ({ value, onChange }: Props) => {
       )}
     </div>
   );
-}
+};

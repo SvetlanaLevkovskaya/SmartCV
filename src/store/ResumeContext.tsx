@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
+
 import { ResumeSection } from '../types';
 
 interface ResumeContextType {
@@ -22,15 +23,15 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
   }, [sections]);
 
   const addSection = (section: ResumeSection) => {
-    setSections(prev => [...prev, section]);
+    setSections((prev) => [...prev, section]);
   };
 
   const updateSection = (section: ResumeSection) => {
-    setSections(prev => prev.map(s => (s.id === section.id ? section : s)));
+    setSections((prev) => prev.map((s) => (s.id === section.id ? section : s)));
   };
 
   const deleteSection = (id: string) => {
-    setSections(prev => prev.filter(s => s.id !== id));
+    setSections((prev) => prev.filter((s) => s.id !== id));
   };
 
   const reorderSections = (newOrder: ResumeSection[]) => {
@@ -38,8 +39,8 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <ResumeContext.Provider value={ { sections, addSection, updateSection, deleteSection, reorderSections } }>
-      { children }
+    <ResumeContext.Provider value={{ sections, addSection, updateSection, deleteSection, reorderSections }}>
+      {children}
     </ResumeContext.Provider>
   );
 };

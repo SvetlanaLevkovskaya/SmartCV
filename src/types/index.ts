@@ -24,7 +24,7 @@ export interface ExperienceSection extends BaseSection {
   position: string;
   company: string;
   startDate: string;
-  endDate: string
+  endDate: string;
   description: string;
   isCurrentlyWork: boolean;
 }
@@ -34,8 +34,8 @@ export interface EducationSection extends BaseSection {
   schoolName: string;
   degree: string;
   fieldOfStudy: string;
-  country: string
-  city: string
+  country: string;
+  city: string;
   startYear: string;
   endYear: string;
 }
@@ -45,18 +45,15 @@ export interface SkillsSection extends BaseSection {
   skills: string[];
 }
 
-
-
 export interface CertificatesSection extends BaseSection {
   type: 'certificates';
-  text: string[];
+  items: string[];
 }
 
 export type ResumeSection =
-  PersonalInfoSection
+  | PersonalInfoSection
   | SummarySection
   | ExperienceSection
   | EducationSection
   | SkillsSection
-  | CertificatesSection
-
+  | CertificatesSection;

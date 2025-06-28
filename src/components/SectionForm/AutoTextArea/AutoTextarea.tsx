@@ -1,6 +1,6 @@
 import { TextareaHTMLAttributes, useEffect, useRef } from 'react';
 
-type AutoTextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement>
+type AutoTextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export const AutoTextarea = ({ value, ...props }: AutoTextareaProps) => {
   const ref = useRef<HTMLTextAreaElement | null>(null);
@@ -14,11 +14,6 @@ export const AutoTextarea = ({ value, ...props }: AutoTextareaProps) => {
   }, [value]);
 
   return (
-    <textarea
-      ref={ ref }
-      value={ value }
-      { ...props }
-      className={ `overflow-hidden resize-none ${ props.className ?? '' }` }
-    />
+    <textarea ref={ref} value={value} {...props} className={`overflow-hidden resize-none ${props.className ?? ''}`} />
   );
 };

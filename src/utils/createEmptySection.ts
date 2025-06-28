@@ -1,5 +1,6 @@
-import { SectionType, ResumeSection } from '../types';
 import { v4 as uuidv4 } from 'uuid';
+
+import { ResumeSection, SectionType } from '../types';
 
 export const createEmptySection = (type: SectionType): ResumeSection => {
   const id = uuidv4();
@@ -10,15 +11,30 @@ export const createEmptySection = (type: SectionType): ResumeSection => {
       return { id, type, text: '' };
     case 'experience':
       return {
-        id, type, position: '', company: '', startDate: '', endDate: '', description: '', isCurrentlyWork: false
+        id,
+        type,
+        position: '',
+        company: '',
+        startDate: '',
+        endDate: '',
+        description: '',
+        isCurrentlyWork: false,
       };
     case 'education':
       return {
-        id, type, schoolName: '', degree: '', fieldOfStudy: '', country: '', city: '', startYear: '', endYear: '',
+        id,
+        type,
+        schoolName: '',
+        degree: '',
+        fieldOfStudy: '',
+        country: '',
+        city: '',
+        startYear: '',
+        endYear: '',
       };
     case 'skills':
       return { id, type, skills: [] };
     case 'certificates':
-      return { id, type, text: [] };
+      return { id, type, items: [] };
   }
-}
+};

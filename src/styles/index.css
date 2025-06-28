@@ -1,13 +1,12 @@
-@import "../../node_modules/tailwindcss";
-
+@import '../../node_modules/tailwindcss';
 
 @theme {
-  --color-amber-300: #FFD54F;
+  --color-amber-300: #ffd54f;
   --color-gray-200: #e5e7eb;
   --color-gray-700: #364153;
   --color-gray-600: #4a5565;
   --color-white: #FFFFF;
-  --color-stone-50: #fafaf9
+  --color-stone-50: #fafaf9;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,11 +16,9 @@
     --color-gray-700: #d1d5db;
     --color-gray-600: #9ca3af;
     --color-white: #1e1e1e;
-    --color-stone-50: #1e1e1a
+    --color-stone-50: #1e1e1a;
   }
 }
-
-
 
 @layer base {
   html {
@@ -49,7 +46,6 @@
       cursor: auto;
     }
   }
-
 }
 
 :root {
@@ -95,8 +91,3 @@
   font-style: normal;
   font-display: swap;
 }
-
-
-
-
-
