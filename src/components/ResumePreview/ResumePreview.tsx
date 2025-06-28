@@ -57,7 +57,7 @@ export const ResumePreview = () => {
       }
       case 'summary':
         return (
-          <div className="mb-4">
+          <div className="mb-6">
             <h2 className="text-xl font-semibold border-b pb-3 mb-1">Summary</h2>
             <p className="text-sm">{ section.text }</p>
           </div>
@@ -72,18 +72,18 @@ export const ResumePreview = () => {
             : section.endDate || '';
 
         return (
-          <div className="mb-4">
+          <div className="mb-6">
             <h2 className="text-xl font-semibold border-b pb-3 mb-1">Experience</h2>
             <div>
-              { section.position && <h3 className="font-bold">{ section.position }</h3> }
+              { section.position && <h3 className="font-bold mt-2">{ section.position }</h3> }
               { (hasCompany || hasDates) && (
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-gray-700  mt-2">
                   { hasCompany && section.company }
                   { hasCompany && hasDates && ' • ' }
                   { dateRange }
                 </p>
               ) }
-              { section.description && <p className="text-sm">{ section.description }</p> }
+              { section.description && <p className="text-sm whitespace-pre-line mt-2">{ section.description }</p> }
             </div>
           </div>
         );
@@ -94,13 +94,13 @@ export const ResumePreview = () => {
         const hasYears = !!section.startYear || !!section.endYear;
 
         return (
-          <div className="mb-4">
+          <div className="mb-6">
             <h2 className="text-xl font-semibold border-b pb-3 mb-1">Education</h2>
             <div>
-              { section.schoolName && <h3 className="font-bold">{ section.schoolName }</h3> }
+              { section.schoolName && <h3 className="font-bold  mt-2">{ section.schoolName }</h3> }
 
               { hasDegreeOrField && (
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-gray-700  mt-2">
                   { [section.degree, section.fieldOfStudy].filter(Boolean).join(', ') }
                 </p>
               ) }
@@ -122,7 +122,7 @@ export const ResumePreview = () => {
       }
       case 'skills':
         return (
-          <div className="mb-4">
+          <div className="mb-6">
             <h2 className="text-xl font-semibold border-b pb-3 mb-1">Skills</h2>
             <ul className="text-sm list-disc pl-4 columns-2 gap-x-8">
               { section.skills.map((skill, index) => (
@@ -164,26 +164,30 @@ export const ResumePreview = () => {
 
       </div>
 
-      <div
-        id="resume-preview"
-        className="border max-w-3xl mx-auto bg-white"
-      >
-        { sections.find(s => s.type === 'personalInfo') && (
-          <div className="w-full px-6 py-6  border-b">
-            { renderSection(sections.find(s => s.type === 'personalInfo')!) }
-          </div>
-        ) }
 
-        <div className="p-6">
-          { sections
-            .filter(s => s.type !== 'personalInfo')
-            .map(section => (
-              <div key={ section.id }>
-                { renderSection(section) }
-              </div>
-            )) }
+      { sections.length > 0 && (
+        <div
+          id="resume-preview"
+          className="border max-w-3xl mx-auto bg-white"
+        >
+          { sections.find(s => s.type === 'personalInfo') && (
+            <div className="w-full px-6 py-6  border-b">
+              { renderSection(sections.find(s => s.type === 'personalInfo')!) }
+            </div>
+          ) }
+          { sections.filter(s => s.type !== 'personalInfo').length > 0 && (
+          <div className="p-6">
+            { sections
+              .filter(s => s.type !== 'personalInfo')
+              .map(section => (
+                <div key={ section.id }>
+                  { renderSection(section) }
+                </div>
+              )) }
+          </div>
+          )}
         </div>
-      </div>
+      ) }
     </div>
   );
 };

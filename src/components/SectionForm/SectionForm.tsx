@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CertificatesSection, EducationSection, ResumeSection, SectionType, SkillsSection } from '../../types';
 import { FiX } from 'react-icons/fi';
+import { AutoTextarea } from '../AutoTextArea/AutoTextarea.tsx';
 
 
 interface SectionFormProps {
@@ -138,7 +139,7 @@ export const SectionForm = ({ section, onUpdate, onDelete }: SectionFormProps) =
             ) }
 
             { section.type === 'summary' && (
-              <textarea
+              <AutoTextarea
                 placeholder="Summary"
                 value={ 'text' in localSection ? localSection.text : '' }
                 onChange={ e => handleChange('text', e.target.value) }
@@ -182,7 +183,7 @@ export const SectionForm = ({ section, onUpdate, onDelete }: SectionFormProps) =
                   <label>I currently work here</label>
                 </div>
 
-                <textarea
+                <AutoTextarea
                   placeholder="Write your own bullets to describe your role"
                   value={ 'description' in localSection ? localSection.description : '' }
                   onChange={ e => handleChange('description', e.target.value) }
@@ -244,7 +245,7 @@ export const SectionForm = ({ section, onUpdate, onDelete }: SectionFormProps) =
             { section.type === 'certificates' && (() => {
               const cert = localSection as CertificatesSection
               return (
-                <textarea
+                <AutoTextarea
                   placeholder="Enter certificates separated by commas"
                   value={ cert.text.join(', ') }
                   onChange={ e => handleChange('text', e.target.value.split(',').map(t => t.trim())) }
@@ -256,7 +257,7 @@ export const SectionForm = ({ section, onUpdate, onDelete }: SectionFormProps) =
             { section.type === 'skills' && (() => {
               const skl = localSection as SkillsSection
               return (
-                <textarea
+                <AutoTextarea
                   placeholder="Enter certificates separated by commas"
                   value={ skl.skills.join(', ') }
                   onChange={ e => handleChange('skills', e.target.value.split(',').map(t => t.trim())) }
@@ -269,7 +270,7 @@ export const SectionForm = ({ section, onUpdate, onDelete }: SectionFormProps) =
 
           <button
             onClick={ onDelete }
-            className="mt-4 w-full flex justify-end text-gray-500 cursor-pointer select-none transition-transform duration-200 ease-in-out hover:scale-110"
+            className="w-full flex justify-end text-gray-500 cursor-pointer select-none transition-transform duration-200 ease-in-out hover:scale-110"
             aria-label="Delete section"
             style={ { transformOrigin: 'center right' } }
           >
