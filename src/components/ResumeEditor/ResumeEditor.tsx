@@ -1,10 +1,9 @@
-
 import { SectionForm } from '../SectionForm/SectionForm.tsx';
 import { ResumeSection, SectionType } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 
-import { closestCenter, DndContext, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { closestCenter, DndContext, DragEndEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
@@ -77,7 +76,7 @@ function SortableSection({ section, onUpdate, onDelete }: {
 
 export const ResumeEditor = () => {
   const { sections, addSection, updateSection, deleteSection, reorderSections } = useResume();
-  const [newType, setNewType] = useState<SectionType>('experience');
+  const [newType, setNewType] = useState<SectionType>('personalInfo');
 
   const sensors = useSensors(useSensor(PointerSensor));
 
@@ -86,8 +85,10 @@ export const ResumeEditor = () => {
     addSection(newSection);
   };
 
-  const handleDragEnd = (event: any) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
+
+    if (!over) return;
 
     if (active.id !== over?.id) {
       const oldIndex = sections.findIndex(s => s.id === active.id);
@@ -99,33 +100,53 @@ export const ResumeEditor = () => {
   };
 
   return (
-    <div className="w-full p-6 pl-40 border-r overflow-auto">
-      <h2 className="text-xl font-bold mb-4">CV Editor</h2>
+    <div className="w-full p-6 pl-6 xl:pl-20 2xl:pl-40 border-r">
+      <div className="flex gap-2 justify-between">
+        <h2 className="text-xl font-bold mb-4">CV Editor</h2>
 
-      <div className="flex gap-2 mb-4">
-        <select
-          value={ newType }
-          onChange={ e => setNewType(e.target.value as SectionType) }
-          className="border p-1 rounded"
-        >
-          <option value="personalInfo">Personal Info</option>
-          <option value="summary">Summary</option>
-          <option value="experience">Experience</option>
-          <option value="education">Education</option>
-          <option value="skills">Skills</option>
-          <option value="certificates">Certificates</option>
+        <div className="flex gap-3 mb-4 items-center">
+          <label htmlFor="section-select" className="sr-only" />
+          <select
+            id="section-select"
+            value={ newType }
+            onChange={ e => setNewType(e.target.value as SectionType) }
+            className="border p-1 rounded"
+          >
+            <option value="personalInfo">Personal Info</option>
+            <option value="summary">Summary</option>
+            <option value="experience">Experience</option>
+            <option value="education">Education</option>
+            <option value="skills">Skills</option>
+            <option value="certificates">Certificates</option>
+          </select>
 
-        </select>
-        <button onClick={ handleAdd } className="bg-yellow-300 shadow-[4px_4px_rgba(30,30,30)]  px-3 py-1 rounded">
-          Add section
-        </button>
+          <button
+            onClick={ handleAdd }
+            className="bg-yellow-300 shadow-[4px_4px_rgba(30,30,30)] text-gray-800 px-3 py-1 rounded transition hover:bg-yellow-400 focus:outline-none"
+            aria-label="Add section"
+          >
+            Add section
+          </button>
+        </div>
       </div>
 
 
       <DndContext sensors={ sensors } collisionDetection={ closestCenter } onDragEnd={ handleDragEnd }>
-        <SortableContext items={ sections.map(s => s.id) } strategy={ verticalListSortingStrategy }>
+        <SortableContext items={ sections.filter(s => s.type !== 'personalInfo').map(s => s.id) }
+                         strategy={ verticalListSortingStrategy }>
           { sections.map(section => {
-            console.log('Rendering section:', section.id);
+            if (section.type === 'personalInfo') {
+              return (
+                <div key={ section.id }>
+                  <SectionForm
+                    section={ section }
+                    onUpdate={ updateSection }
+                    onDelete={ () => deleteSection(section.id) }
+                  />
+                </div>
+              );
+            }
+
             return (
               <SortableSection
                 key={ section.id }
