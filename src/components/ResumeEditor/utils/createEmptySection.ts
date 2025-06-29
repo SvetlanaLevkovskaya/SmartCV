@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { ResumeSection, SectionType } from '../types';
+import { ResumeSection, SectionType } from '../../../types';
 
 export const createEmptySection = (type: SectionType): ResumeSection => {
   const id = uuidv4();

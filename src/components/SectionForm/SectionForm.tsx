@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const SectionForm = ({ section, onUpdate, onDelete }: Props) => {
-  const { register, handleSubmit, reset, watch, setValue } = useForm<ResumeSection>({
+  const { register, handleSubmit, reset, watch, setValue, control } = useForm<ResumeSection>({
     defaultValues: section,
   });
 
@@ -28,10 +28,14 @@ export const SectionForm = ({ section, onUpdate, onDelete }: Props) => {
 
   useEffect(() => {
     reset(section);
-  }, [section.id]);
+  }, [reset, section, section.id]);
+
+  const onSubmit = (data: ResumeSection) => {
+    onUpdate(data);
+  };
 
   return (
-    <form onSubmit={handleSubmit(() => {})} className="border rounded p-4 pl-8 mb-4 bg-white">
+    <form onSubmit={handleSubmit(onSubmit)} className="border rounded p-4 pl-8 mb-4 bg-white">
       <div className="flex items-center justify-between gap-3 mb-2">
         <h3 className="font-semibold capitalize">{section.type}</h3>
         <button
@@ -52,6 +56,7 @@ export const SectionForm = ({ section, onUpdate, onDelete }: Props) => {
           setValue={setValue}
           onBlur={() => onUpdate(watchedSection)}
           onUpdate={onUpdate}
+          control={control}
         />
       </div>
 

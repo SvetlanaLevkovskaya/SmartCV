@@ -5,11 +5,11 @@ import { SortableContext, arrayMove, verticalListSortingStrategy } from '@dnd-ki
 
 import { useResume } from '../../store/ResumeContext.tsx';
 import { SectionType } from '../../types';
-import { createEmptySection } from '../../utils/createEmptySection.ts';
 import { SectionForm } from '../SectionForm/SectionForm.tsx';
 import { Select } from '../Select/Select.tsx';
 
 import { SortableSection } from './SortableSection/SortableSection.tsx';
+import { createEmptySection } from './utils/createEmptySection.ts';
 
 export const ResumeEditor = () => {
   const { sections, addSection, updateSection, deleteSection, reorderSections } = useResume();
