@@ -23,21 +23,22 @@ const sectionLabels: Record<SectionType, string> = {
 };
 
 export const SectionForm = ({ section, onUpdate, onDelete }: Props) => {
-  const { register, handleSubmit, reset, watch, setValue, control } = useForm<ResumeSection>({
+  const { register, handleSubmit, reset, watch, setValue, control, getValues } = useForm<ResumeSection>({
     defaultValues: section,
   });
 
   const watchedSection = watch();
 
   const handleAITips = () => {
-    const updates = AI_TIPS[section.type] as Omit<typeof section, 'id' | 'type'>;
-    reset({ ...watchedSection, ...updates });
-    onUpdate({ ...watchedSection, ...updates });
+    const updates = AI_TIPS[section.type] as Partial<Omit<typeof section, 'id' | 'type'>>;
+    const updatedSection = { ...section, ...updates };
+    reset(updatedSection);
+    onUpdate(updatedSection);
   };
 
   useEffect(() => {
     reset(section);
-  }, [reset, section, section.id]);
+  }, [reset, section]);
 
   const onSubmit = (data: ResumeSection) => {
     onUpdate(data);
@@ -63,7 +64,7 @@ export const SectionForm = ({ section, onUpdate, onDelete }: Props) => {
           register={register}
           watchedSection={watchedSection}
           setValue={setValue}
-          onBlur={() => onUpdate(watchedSection)}
+          onBlur={() => onUpdate(getValues())}
           onUpdate={onUpdate}
           control={control}
         />

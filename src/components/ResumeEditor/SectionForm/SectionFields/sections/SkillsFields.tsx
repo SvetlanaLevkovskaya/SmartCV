@@ -6,13 +6,13 @@ import { isSkillsSection } from '@/types/resume.ts';
 
 import { Props } from '../SectionFields.types.ts';
 
-import { SkillsSection } from '@/types';
-
 export const SkillsFields = ({ setValue, onUpdate, section, watchedSection }: Props) => {
   const [rawSkills, setRawSkills] = useState('');
 
   useEffect(() => {
-    setRawSkills((watchedSection as SkillsSection).skills?.join(', ') || '');
+    if (isSkillsSection(watchedSection)) {
+      setRawSkills(watchedSection.skills?.join(', ') || '');
+    }
   }, [watchedSection]);
 
   return (

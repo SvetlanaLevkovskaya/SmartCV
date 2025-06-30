@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+
+import { useClickOutside } from '@/hooks/useClickOutside.tsx';
 
 import { SectionType } from '@/types';
 
@@ -18,14 +20,26 @@ interface Props {
 
 export const Select = ({ value, onChange }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const selected = SECTION_OPTIONS.find((opt) => opt.value === value);
 
+  useClickOutside(wrapperRef, () => setIsOpen(false));
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+    }
+  };
+
   return (
-    <div className="relative inline-block w-48 text-left">
+    <div ref={wrapperRef} className="relative inline-block w-48 text-left">
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
+        onKeyDown={handleKeyDown}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
         className="w-full border px-3 py-2 rounded focus:outline-none flex justify-between items-center"
       >
         {selected?.label || 'Select section'}
@@ -40,17 +54,27 @@ export const Select = ({ value, onChange }: Props) => {
       </button>
 
       {isOpen && (
-        <ul className="absolute z-10 mt-1 w-full bg-stone-50 border rounded">
+        <ul className="absolute z-10 mt-1 w-full bg-stone-50 border rounded" role="listbox">
           {SECTION_OPTIONS.map((option) => (
             <li
               key={option.value}
+              tabIndex={0}
               onClick={() => {
                 onChange(option.value);
                 setIsOpen(false);
               }}
-              className={`px-3 py-2 cursor-pointer hover:bg-gray-200 ${
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onChange(option.value);
+                  setIsOpen(false);
+                }
+              }}
+              className={`px-3 py-2 cursor-pointer hover:bg-gray-200 focus:bg-gray-300 ${
                 option.value === value ? 'bg-gray-600 font-semibold' : ''
               }`}
+              role="option"
+              aria-selected={option.value === value}
             >
               {option.label}
             </li>
