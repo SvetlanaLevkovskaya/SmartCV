@@ -69,15 +69,16 @@ export const SectionForm = ({ section, onUpdate, onDelete }: Props) => {
         />
       </div>
 
-      <button
-        type="button"
-        onClick={onDelete}
-        className="w-full flex justify-end text-gray-500 select-none transition-transform duration-200 ease-in-out hover:scale-110"
-        aria-label="Delete section"
-        style={{ transformOrigin: 'center right' }}
-      >
-        <FiX className="text-xl" />
-      </button>
+      <div className="flex justify-end mt-4">
+        <button
+          type="button"
+          onClick={onDelete}
+          className="w-8 h-8 flex items-center justify-center text-gray-500 hover:scale-110 transition-transform"
+          aria-label="Delete section"
+        >
+          <FiX className="text-xl" />
+        </button>
+      </div>
     </form>
   );
 };
