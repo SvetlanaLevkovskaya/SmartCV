@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { AutoTextArea } from '@/components/SectionForm/_ui';
+import { AutoTextArea } from '@/components/ResumeEditor/SectionForm/_ui';
 
 import { isCertificatesSection } from '@/types/resume.ts';
 

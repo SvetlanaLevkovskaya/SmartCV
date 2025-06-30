@@ -1,5 +1,5 @@
-import { ResumeEditor } from '@/components/ResumeEditor/ResumeEditor.tsx';
-import { ResumePreview } from '@/components/ResumePreview/ResumePreview.tsx';
+import { ResumeEditor } from '@/components/ResumeEditor';
+import { ResumePreview } from '@/components/ResumePreview';
 
 import { useDarkMode } from '@/hooks/useDarkMode.tsx';
 

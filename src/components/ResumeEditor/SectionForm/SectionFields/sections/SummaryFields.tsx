@@ -1,4 +1,4 @@
-import { AutoTextArea } from '@/components/SectionForm/_ui';
+import { AutoTextArea } from '@/components/ResumeEditor/SectionForm/_ui';
 
 import { Props } from '../SectionFields.types.ts';
 

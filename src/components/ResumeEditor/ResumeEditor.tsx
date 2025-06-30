@@ -3,8 +3,8 @@ import { useCallback, useState } from 'react';
 import { DndContext, DragEndEvent, PointerSensor, closestCenter, useSensor, useSensors } from '@dnd-kit/core';
 import { SortableContext, arrayMove, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
-import { SectionForm } from '@/components/SectionForm/SectionForm.tsx';
-import { Select } from '@/components/SectionForm/_ui/Select/Select.tsx';
+import { SectionForm } from '@/components/ResumeEditor/SectionForm';
+import { Select } from '@/components/ResumeEditor/SectionForm/_ui/Select/Select.tsx';
 
 import { isPersonalInfoSection } from '@/types/resume.ts';
 

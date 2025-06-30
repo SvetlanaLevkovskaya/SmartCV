@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-import { SectionForm } from '@/components/SectionForm/SectionForm.tsx';
+import { SectionForm } from '@/components/ResumeEditor/SectionForm';
 
 import { ResumeSection } from '@/types';
 

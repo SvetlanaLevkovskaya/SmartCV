@@ -2,7 +2,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useWatch } from 'react-hook-form';
 
-import { AutoTextArea } from '@/components/SectionForm/_ui';
+import { AutoTextArea } from '@/components/ResumeEditor/SectionForm/_ui';
 
 import { useDarkMode } from '@/hooks/useDarkMode.tsx';
 
@@ -60,6 +60,11 @@ export const ExperienceFields = ({ register, setValue, control, onBlur, section,
         calendarClassName={isDarkMode ? 'react-datepicker-dark' : ''}
         wrapperClassName={isDarkMode ? 'react-datepicker-wrapper-dark' : ''}
       />
+
+      <div className="flex gap-2">
+        <input type="checkbox" {...register('isCurrentlyWork')} onBlur={onBlur} className="checkbox" />
+        <label>I currently work here</label>
+      </div>
 
       <AutoTextArea
         placeholder="Description"
