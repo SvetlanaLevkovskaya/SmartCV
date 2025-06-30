@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiX } from 'react-icons/fi';
 
-import { ResumeSection } from '../../types';
+import { ResumeSection, SectionType } from '../../types';
 
 import { SectionFields } from './SectionFields/SectionFields.tsx';
 import { AI_TIPS } from './const/aiTips.ts';
@@ -12,6 +12,15 @@ interface Props {
   onUpdate: (section: ResumeSection) => void;
   onDelete: () => void;
 }
+
+const sectionLabels: Record<SectionType, string> = {
+  personalInfo: 'Personal Info',
+  summary: 'Summary',
+  experience: 'Experience',
+  education: 'Education',
+  skills: 'Skills',
+  certificates: 'Certificates',
+};
 
 export const SectionForm = ({ section, onUpdate, onDelete }: Props) => {
   const { register, handleSubmit, reset, watch, setValue, control } = useForm<ResumeSection>({
@@ -37,7 +46,7 @@ export const SectionForm = ({ section, onUpdate, onDelete }: Props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="border rounded p-4 pl-8 mb-4 bg-white">
       <div className="flex items-center justify-between gap-3 mb-2">
-        <h3 className="font-semibold capitalize">{section.type}</h3>
+        <h3 className="font-semibold">{sectionLabels[section.type]}</h3>
         <button
           type="button"
           onClick={handleAITips}

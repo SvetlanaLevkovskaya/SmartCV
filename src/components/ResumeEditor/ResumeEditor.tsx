@@ -5,6 +5,7 @@ import { SortableContext, arrayMove, verticalListSortingStrategy } from '@dnd-ki
 
 import { useResume } from '../../store/ResumeContext.tsx';
 import { SectionType } from '../../types';
+import { isPersonalInfoSection } from '../../types/resume.ts';
 import { SectionForm } from '../SectionForm/SectionForm.tsx';
 import { Select } from '../Select/Select.tsx';
 
@@ -60,7 +61,7 @@ export const ResumeEditor = () => {
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={sortableItems} strategy={verticalListSortingStrategy}>
           {sections.map((section) =>
-            section.type === 'personalInfo' ? (
+            isPersonalInfoSection(section) ? (
               <SectionForm
                 key={section.id}
                 section={section}

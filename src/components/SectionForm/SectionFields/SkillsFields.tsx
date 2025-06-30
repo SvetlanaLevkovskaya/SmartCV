@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { SkillsSection } from '../../../types';
-import { AutoTextarea } from '../AutoTextArea/AutoTextarea.tsx';
+import { isSkillsSection } from '../../../types/resume.ts';
+import { AutoTextArea } from '../AutoTextArea/AutoTextArea.tsx';
 
 import { Props } from './SectionFields.types.ts';
 
@@ -13,7 +14,7 @@ export const SkillsFields = ({ setValue, onUpdate, section, watchedSection }: Pr
   }, [watchedSection]);
 
   return (
-    <AutoTextarea
+    <AutoTextArea
       placeholder="Enter skills separated by commas"
       value={rawSkills}
       onChange={(e) => setRawSkills(e.target.value)}
@@ -24,10 +25,13 @@ export const SkillsFields = ({ setValue, onUpdate, section, watchedSection }: Pr
           .map((t) => t.trim())
           .filter(Boolean);
         setValue('skills', skillsArray, { shouldDirty: true });
-        onUpdate({
-          ...section,
-          skills: skillsArray,
-        } as SkillsSection);
+
+        if (isSkillsSection(section)) {
+          onUpdate({
+            ...section,
+            skills: skillsArray,
+          });
+        }
       }}
     />
   );

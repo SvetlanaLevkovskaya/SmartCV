@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { CertificatesSection } from '../../../types';
-import { AutoTextarea } from '../AutoTextArea/AutoTextarea.tsx';
+import { isCertificatesSection } from '../../../types/resume.ts';
+import { AutoTextArea } from '../AutoTextArea/AutoTextArea.tsx';
 
 import { Props } from './SectionFields.types.ts';
 
@@ -9,11 +9,13 @@ export const CertificatesFields = ({ setValue, onUpdate, section, watchedSection
   const [rawItems, setRawItems] = useState('');
 
   useEffect(() => {
-    setRawItems((watchedSection as CertificatesSection).items?.join(', ') || '');
+    if (isCertificatesSection(watchedSection)) {
+      setRawItems(watchedSection.items?.join(', ') || '');
+    }
   }, [watchedSection]);
 
   return (
-    <AutoTextarea
+    <AutoTextArea
       placeholder="Enter certificates separated by commas"
       value={rawItems}
       onChange={(e) => setRawItems(e.target.value)}
@@ -25,10 +27,12 @@ export const CertificatesFields = ({ setValue, onUpdate, section, watchedSection
 
         setValue('items', itemsArray, { shouldDirty: true });
 
-        onUpdate({
-          ...section,
-          items: itemsArray,
-        } as CertificatesSection);
+        if (isCertificatesSection(section)) {
+          onUpdate({
+            ...section,
+            items: itemsArray,
+          });
+        }
       }}
     />
   );

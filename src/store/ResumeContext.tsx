@@ -48,7 +48,7 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
 export const useResume = () => {
   const context = useContext(ResumeContext);
   if (!context) {
-    throw new Error('useResume must be used within a ResumeProvider');
+    throw new Error('ResumeProvider is missing in the component tree');
   }
   return context;
 };

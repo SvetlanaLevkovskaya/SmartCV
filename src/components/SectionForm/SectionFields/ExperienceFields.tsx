@@ -1,25 +1,19 @@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Control, UseFormRegister, UseFormSetValue, useWatch } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
 
 import { useDarkMode } from '../../../hooks/useDarkMode.tsx';
-import { ResumeSection } from '../../../types';
+import { isExperienceSection } from '../../../types/resume.ts';
+import { AutoTextArea } from '../AutoTextArea/AutoTextArea.tsx';
 
-interface Props {
-  section: ResumeSection;
-  register: UseFormRegister<ResumeSection>;
-  watchedSection: ResumeSection;
-  setValue: UseFormSetValue<ResumeSection>;
-  onBlur: () => void;
-  onUpdate: (section: ResumeSection) => void;
-  control: Control<ResumeSection>;
-}
+import { Props } from './SectionFields.types.ts';
 
 export const ExperienceFields = ({ register, setValue, control, onBlur, section, onUpdate }: Props) => {
   const isDarkMode = useDarkMode();
 
   const watchedStartDate = useWatch({ control, name: 'startDate' });
   const watchedEndDate = useWatch({ control, name: 'endDate' });
+  const description = useWatch({ control, name: 'description' });
 
   return (
     <>
@@ -35,7 +29,7 @@ export const ExperienceFields = ({ register, setValue, control, onBlur, section,
         onChange={(date) => {
           const iso = date?.toISOString().split('T')[0] ?? '';
           setValue('startDate', iso, { shouldDirty: true });
-          if (section.type === 'experience') {
+          if (isExperienceSection(section)) {
             onUpdate({
               ...section,
               startDate: iso,
@@ -54,7 +48,7 @@ export const ExperienceFields = ({ register, setValue, control, onBlur, section,
         onChange={(date) => {
           const iso = date?.toISOString().split('T')[0] ?? '';
           setValue('endDate', iso, { shouldDirty: true });
-          if (section.type === 'experience') {
+          if (isExperienceSection(section)) {
             onUpdate({
               ...section,
               endDate: iso,
@@ -65,7 +59,13 @@ export const ExperienceFields = ({ register, setValue, control, onBlur, section,
         wrapperClassName={isDarkMode ? 'react-datepicker-wrapper-dark' : ''}
       />
 
-      <textarea placeholder="Description" {...register('description')} onBlur={onBlur} className="input" />
+      <AutoTextArea
+        placeholder="Description"
+        {...register('description')}
+        value={description}
+        onBlur={onBlur}
+        className="textarea"
+      />
     </>
   );
 };

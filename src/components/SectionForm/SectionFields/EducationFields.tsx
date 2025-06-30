@@ -3,6 +3,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useWatch } from 'react-hook-form';
 
 import { useDarkMode } from '../../../hooks/useDarkMode.tsx';
+import { isEducationSection } from '../../../types/resume.ts';
 
 import { Props } from './SectionFields.types.ts';
 
@@ -30,7 +31,7 @@ export const EducationFields = ({ register, setValue, control, onBlur, section, 
         onChange={(date) => {
           const iso = date?.toISOString().split('T')[0] ?? '';
           setValue('startYear', iso, { shouldDirty: true });
-          if (section.type === 'education') {
+          if (isEducationSection(section)) {
             onUpdate({
               ...section,
               startYear: iso,
@@ -50,7 +51,7 @@ export const EducationFields = ({ register, setValue, control, onBlur, section, 
         onChange={(date) => {
           const iso = date?.toISOString().split('T')[0] ?? '';
           setValue('endYear', iso, { shouldDirty: true });
-          if (section.type === 'education') {
+          if (isEducationSection(section)) {
             onUpdate({
               ...section,
               endYear: iso,
