@@ -3,8 +3,9 @@ import { memo } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-import { ResumeSection } from '../../../types';
-import { SectionForm } from '../../SectionForm/SectionForm.tsx';
+import { SectionForm } from '@/components/SectionForm/SectionForm.tsx';
+
+import { ResumeSection } from '@/types';
 
 interface Props {
   section: ResumeSection;

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { isCertificatesSection } from '../../../types/resume.ts';
-import { AutoTextArea } from '../AutoTextArea/AutoTextArea.tsx';
+import { AutoTextArea } from '@/components/SectionForm/_ui';
 
-import { Props } from './SectionFields.types.ts';
+import { isCertificatesSection } from '@/types/resume.ts';
+
+import { Props } from '../SectionFields.types.ts';
 
 export const CertificatesFields = ({ setValue, onUpdate, section, watchedSection }: Props) => {
   const [rawItems, setRawItems] = useState('');

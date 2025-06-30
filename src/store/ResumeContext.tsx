@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
 
-import { ResumeSection } from '../types';
+import { ResumeSection } from '@/types';
 
 interface ResumeContextType {
   sections: ResumeSection[];

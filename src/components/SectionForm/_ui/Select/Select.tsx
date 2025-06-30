@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { SectionType } from '../../types';
+import { SectionType } from '@/types';
 
 const SECTION_OPTIONS: { label: string; value: SectionType }[] = [
   { value: 'personalInfo', label: 'Personal Info' },

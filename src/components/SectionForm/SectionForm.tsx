@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiX } from 'react-icons/fi';
 
-import { ResumeSection, SectionType } from '../../types';
-
 import { SectionFields } from './SectionFields/SectionFields.tsx';
 import { AI_TIPS } from './const/aiTips.ts';
+import { ResumeSection, SectionType } from '@/types';
 
 interface Props {
   section: ResumeSection;

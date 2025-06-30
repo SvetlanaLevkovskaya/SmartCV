@@ -1,10 +1,12 @@
-import { CertificatesFields } from './CertificatesFields';
-import { EducationFields } from './EducationFields';
-import { ExperienceFields } from './ExperienceFields';
-import { PersonalInfoFields } from './PersonalInfoFields';
-import { Props } from './SectionFields.types';
-import { SkillsFields } from './SkillsFields';
-import { SummaryFields } from './SummaryFields.tsx';
+import { Props } from './SectionFields.types.ts';
+import {
+  CertificatesFields,
+  EducationFields,
+  ExperienceFields,
+  PersonalInfoFields,
+  SkillsFields,
+  SummaryFields,
+} from './sections';
 
 export const SectionFields = (props: Props) => {
   switch (props.section.type) {

@@ -1,4 +1,4 @@
-import { Props } from './SectionFields.types.ts';
+import { Props } from '../SectionFields.types.ts';
 
 export const PersonalInfoFields = ({ register, onBlur }: Props) => {
   return (

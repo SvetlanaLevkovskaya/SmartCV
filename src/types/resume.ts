@@ -22,3 +22,10 @@ export const isSkillsSection = (section: ResumeSection): section is SkillsSectio
 
 export const isCertificatesSection = (section: ResumeSection): section is CertificatesSection =>
   section.type === 'certificates';
+
+export function isSection<T extends ResumeSection['type']>(
+  section: ResumeSection,
+  type: T
+): section is Extract<ResumeSection, { type: T }> {
+  return section.type === type;
+}

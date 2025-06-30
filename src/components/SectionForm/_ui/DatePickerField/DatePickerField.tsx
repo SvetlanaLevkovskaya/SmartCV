@@ -1,8 +1,9 @@
 import DatePicker from 'react-datepicker';
 import { Control, UseFormSetValue, useWatch } from 'react-hook-form';
 
-import { useDarkMode } from '../../../hooks/useDarkMode';
-import { ResumeSection } from '../../../types';
+import { useDarkMode } from '@/hooks/useDarkMode.tsx';
+
+import { ResumeSection } from '@/types';
 
 type DateFields = 'startDate' | 'endDate' | 'startYear' | 'endYear';
 

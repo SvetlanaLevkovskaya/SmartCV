@@ -2,11 +2,13 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useWatch } from 'react-hook-form';
 
-import { useDarkMode } from '../../../hooks/useDarkMode.tsx';
-import { isExperienceSection } from '../../../types/resume.ts';
-import { AutoTextArea } from '../AutoTextArea/AutoTextArea.tsx';
+import { AutoTextArea } from '@/components/SectionForm/_ui';
 
-import { Props } from './SectionFields.types.ts';
+import { useDarkMode } from '@/hooks/useDarkMode.tsx';
+
+import { isExperienceSection } from '@/types/resume.ts';
+
+import { Props } from '../SectionFields.types.ts';
 
 export const ExperienceFields = ({ register, setValue, control, onBlur, section, onUpdate }: Props) => {
   const isDarkMode = useDarkMode();

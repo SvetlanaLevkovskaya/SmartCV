@@ -2,10 +2,11 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useWatch } from 'react-hook-form';
 
-import { useDarkMode } from '../../../hooks/useDarkMode.tsx';
-import { isEducationSection } from '../../../types/resume.ts';
+import { useDarkMode } from '@/hooks/useDarkMode.tsx';
 
-import { Props } from './SectionFields.types.ts';
+import { isEducationSection } from '@/types/resume.ts';
+
+import { Props } from '../SectionFields.types.ts';
 
 export const EducationFields = ({ register, setValue, control, onBlur, section, onUpdate }: Props) => {
   const isDarkMode = useDarkMode();

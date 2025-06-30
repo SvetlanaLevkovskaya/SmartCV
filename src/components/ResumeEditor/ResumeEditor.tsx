@@ -3,14 +3,16 @@ import { useCallback, useState } from 'react';
 import { DndContext, DragEndEvent, PointerSensor, closestCenter, useSensor, useSensors } from '@dnd-kit/core';
 import { SortableContext, arrayMove, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
-import { useResume } from '../../store/ResumeContext.tsx';
-import { SectionType } from '../../types';
-import { isPersonalInfoSection } from '../../types/resume.ts';
-import { SectionForm } from '../SectionForm/SectionForm.tsx';
-import { Select } from '../Select/Select.tsx';
+import { SectionForm } from '@/components/SectionForm/SectionForm.tsx';
+import { Select } from '@/components/SectionForm/_ui/Select/Select.tsx';
+
+import { isPersonalInfoSection } from '@/types/resume.ts';
+
+import { useResume } from '@/store/ResumeContext.tsx';
 
 import { SortableSection } from './SortableSection/SortableSection.tsx';
 import { createEmptySection } from './utils/createEmptySection.ts';
+import { SectionType } from '@/types';
 
 export const ResumeEditor = () => {
   const { sections, addSection, updateSection, deleteSection, reorderSections } = useResume();

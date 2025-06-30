@@ -1,4 +1,4 @@
-import { ResumeSection } from '../../../types';
+import { ResumeSection } from '@/types';
 
 export const AI_TIPS: Record<ResumeSection['type'], Partial<ResumeSection>> = {
   personalInfo: {

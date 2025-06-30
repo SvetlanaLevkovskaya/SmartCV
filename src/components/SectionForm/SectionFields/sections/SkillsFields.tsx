@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { SkillsSection } from '../../../types';
-import { isSkillsSection } from '../../../types/resume.ts';
-import { AutoTextArea } from '../AutoTextArea/AutoTextArea.tsx';
+import { AutoTextArea } from '@/components/SectionForm/_ui';
 
-import { Props } from './SectionFields.types.ts';
+import { isSkillsSection } from '@/types/resume.ts';
+
+import { Props } from '../SectionFields.types.ts';
+
+import { SkillsSection } from '@/types';
 
 export const SkillsFields = ({ setValue, onUpdate, section, watchedSection }: Props) => {
   const [rawSkills, setRawSkills] = useState('');

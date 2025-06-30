@@ -1,7 +1,8 @@
 import { HiOutlineDocumentDownload } from 'react-icons/hi';
 
-import { useResume } from '../../store/ResumeContext.tsx';
-import { ResumeSection } from '../../types';
+import { useResume } from '@/store/ResumeContext.tsx';
+
+import { ResumeSection } from '@/types';
 
 export const ResumePreview = () => {
   const { sections } = useResume();

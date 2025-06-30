@@ -1,6 +1,6 @@
 import { Control, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 
-import { ResumeSection } from '../../../types';
+import { ResumeSection } from '@/types';
 
 export interface Props {
   section: ResumeSection;
